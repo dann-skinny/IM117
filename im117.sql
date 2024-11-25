@@ -18,3 +18,37 @@ insert into usuarios(usuario, rol, password) values
     ('Zoyla Vaca', 'envios', '12345');
     
 select * from usuarios;
+
+create table mantenimiento(
+     id int auto_increment primary key,
+     nombreA varchar(20) not null,
+     tipoServicio enum('Mantenimiento', 'Reparación') not null,
+     descripcionFalla text not null,
+	 fecha date not null
+);
+
+drop table mantenimiento;
+
+insert into mantenimiento(nombreA, tipoServicio, descripcionFalla, fecha) values
+     ('AK-47', 'Mantenimiento', 'Revisión general del sistema de disparo', '2024-11-22'),
+     ('M16', 'Reparación', 'Cambio de resorte en el mecanismo de disparo', '2024-11-20'),
+     ('Glock 19', 'Mantenimiento', 'Limpieza y engrase completo', '2024-11-18');
+
+select * from mantenimiento;
+
+create table pedidos(
+     id int auto_increment primary key,
+     equipo varchar(50) not null,
+     cantidad int not null,
+     proveedor varchar(30) not null,
+	 fecha date not null,
+     comentarios text
+);
+
+insert into pedidos(equipo, cantidad, proveedor, fecha, comentarios) values
+     ('Pistola Glock 17', 10, 'Proveedor A', '2024-11-01', 'Se requiere entrega antes del 15 de noviembre'),
+     ('Rifle AR-15', 5, 'Proveedor B', '2024-11-02', 'Pedido urgente'),
+     ('Municiones 9mm', 500, 'Proveedor D', '2024-11-05', 'Incluye embalaje adicional');
+     
+select * from pedidos;
+drop table pedidos;

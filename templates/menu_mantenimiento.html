@@ -1,11 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Encargado de mantenimiento y reparación</title>
+    <link rel="shortcut icon" href="../static/img/logoIM117.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Protest+Revolution&display=swap" rel="stylesheet">
+    <title>Lista de Mantenimiento</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Embed code', sans-serif;
+            background-color: rgb(222, 236, 239); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            color: rgb(29, 62, 94); 
+            margin-bottom: 20px;
+            font-family: 'Embed code', sans-serif;
+        }
+
+        table {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 1200px;
+            border-collapse: separate;
+            border-radius: 2px;
+            background-color: rgb(222, 236, 239); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /*Bordes de la tabla*/
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid rgb(29, 62, 94); 
+            border-radius: 5px;
+        }
+
+        /*encabezados de la tabla*/
+        th {
+            background-color: rgb(25, 76, 108); 
+            color: white;
+        }
+
+        /*Pares de la columna de la tabla*/
+        tr:nth-child(even) {
+            background-color: rgb(191, 210, 218); 
+        }
+
+        /*Impares de las columnas de la tabla*/
+        tr:nth-child(odd) {
+            background-color: rgb(247, 251, 252); 
+        }
+
+        /*Contenedor de botones*/
+        .button-container {
+            margin-top: 20px;
+            text-align: right; 
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /*Boton generar reporte*/
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            background-color: rgb(86, 170, 189); 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: rgb(75, 149, 165); 
+        }
+
+        /*Boton de cerrar sesión*/
+        .button-cs {
+            background-color: rgb(203, 71, 71); 
+        }
+
+        .button-cs:hover {
+            background-color: rgb(137, 47, 47); 
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Interfaz para el encargado de mantenimiento y reparación</h1>
+    <div>
+        <h1>Lista de Mantenimiento</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre del Arma</th>
+                    <th>Tipo de Servicio</th>
+                    <th>Descripción de la Falla</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fila in datos %}
+                <tr>
+                    <td>{{ fila['id'] }}</td>
+                    <td>{{ fila['nombreA'] }}</td>
+                    <td>{{ fila['tipoServicio'] }}</td>
+                    <td>{{ fila['descripcionFalla'] }}</td>
+                    <td>{{ fila['fecha'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="button-container">
+            <a href="/nueva_solicitud" class="button">Generar nuevo reporte</a>
+
+            <!-- Formulario de Cerrar Sesión -->
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" class="button button-cs">Cerrar Sesión</button>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
